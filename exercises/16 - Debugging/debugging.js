@@ -1,3 +1,5 @@
+const { info } = require('console');
+
 const people = [
   { name: 'Wes', cool: true, country: 'Canada' },
   { name: 'Scott', cool: true, country: 'Merica' },
@@ -39,7 +41,7 @@ function go() {
 }
 
 const button = document.querySelector('.bigger');
-button.addEventListener('click', function(e) {
+button.addEventListener('click', (e) => {
   const newFontSize =
     parseFloat(getComputedStyle(e.currentTarget).fontSize) + 1;
   e.currentTarget.style.fontSize = `${newFontSize}px`;
