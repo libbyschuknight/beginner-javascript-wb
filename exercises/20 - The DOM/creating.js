@@ -40,21 +40,7 @@ myDiv.insertAdjacentElement('afterbegin', heading);
 // li five
 // ul
 
-const listDiv = document.createElement('div');
-listDiv.classList.add('list');
-
-const mylist = document.createElement('ul');
-listDiv.appendChild(mylist);
-
-const listItems = ['one', 'two', 'three', 'four', 'five'];
-
-listItems.forEach((item) => {
-  const listItem = document.createElement('li');
-  listItem.textContent = item;
-  mylist.appendChild(listItem);
-});
-
-// //
+// // started doing this and then went to the list of items
 // const oneLi = document.createElement('li');
 // oneLi.textContent = 'one';
 
@@ -68,4 +54,47 @@ listItems.forEach((item) => {
 // mylist.appendChild(twoLi);
 // // ====
 
-console.log(listDiv);
+// const listDiv = document.createElement('div');
+// listDiv.classList.add('list');
+
+// const mylist = document.createElement('ul');
+// listDiv.appendChild(mylist);
+
+// const listItems = ['one', 'two', 'three', 'four', 'five'];
+
+// listItems.forEach((item) => {
+//   const listItem = document.createElement('li');
+//   listItem.textContent = item;
+//   mylist.appendChild(listItem);
+// });
+
+// console.log(listDiv);
+
+// document.body.insertAdjacentElement('afterbegin', listDiv);
+
+// not on page??
+
+// // wes bos's way
+// const list = document.createElement('ul');
+// const li = document.createElement('li');
+// li.textContent = 'three';
+
+// list.appendChild(li);
+
+// document.body.insertAdjacentElement('afterbegin', list);
+
+// const li5 = document.createElement('li');
+// li5.textContent = 'five';
+// list.append(li5);
+
+// const li1 = li5.cloneNode(true);
+// li1.textContent = 'one';
+// list.insertAdjacentElement('afterbegin', li1);
+
+// const li4 = document.createElement('li');
+// li4.textContent = 'four';
+// li5.insertAdjacentElement('beforebegin', li4);
+
+// const li2 = document.createElement('li');
+// li2.textContent = 'four';
+// li1.insertAdjacentElement('afterend', li2);
