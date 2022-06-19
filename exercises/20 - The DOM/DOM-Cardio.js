@@ -90,9 +90,25 @@ console.log(generatePlayerCard('lib', 47, 100));
 
 // make a new div with a class of cards
 
+const div2 = document.createElement('div');
+div2.classList.add('cards');
+document.body.appendChild(div2);
+
+
 // make 4 player cards using generatePlayerCard
 
+const player1 = generatePlayerCard('lib', 47, 100)
+const player2 = generatePlayerCard('bob', 47, 100)
+const player3 = generatePlayerCard('kate', 47, 100)
+const player4 = generatePlayerCard('misty', 47, 100)
+
+
 // append those cards to the div
+
+const cards = document.querySelector('.cards');
+console.log(cards);
+cards.textContent = player1;
+
 // put the div into the DOM just before the wrapper element
 // Bonus, put a delete Button on each card so when you click it, the whole card is removed
 
