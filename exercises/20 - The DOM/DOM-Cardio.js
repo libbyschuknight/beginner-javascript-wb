@@ -33,6 +33,7 @@ const image = document.createElement('img');
 image.src = 'https://picsum.photos/200';
 // set the width to 250
 image.width = 250;
+// height
 // add a class of cute
 image.classList.add('cute');
 
@@ -71,14 +72,27 @@ firstPara.remove();
 
 // create a function called generatePlayerCard that takes in three arguments: name, age, and height
 
-const generatePlayerCard = function (name, age, height) {
+// const generatePlayerCard = function (name, age, height) {
+//   const AGEINDOGYEARS = 100;
+//   return `
+//   <div class="playerCard">
+//     <h2>${name} — ${age}</h2>
+//     <p>They are ${height} and ${age} years old. In Dog years this person would be ${AGEINDOGYEARS}. That would be a tall dog!</p>
+//   </div>
+//   `;
+// };
+
+function generatePlayerCard(name, age, height) {
   const AGEINDOGYEARS = 100;
-  return `<div class="playerCard">
-    <h2>${name} — ${age}</h2>
-    <p>They are ${height} and ${age} years old. In Dog years this person would be ${AGEINDOGYEARS}. That would be a tall dog!</p>
-  </div>
+  const html = `
+    <div class="playerCard">
+      <h2>${name} — ${age}</h2>
+      <p>They are ${height} and ${age} years old. In Dog years this person would be ${AGEINDOGYEARS}. That would be a tall dog!</p>
+      <button class="delete" type="button">&times; Delete</button>
+    </div>
   `;
-};
+  return html;
+}
 
 console.log(generatePlayerCard('lib', 47, 100));
 
@@ -90,28 +104,48 @@ console.log(generatePlayerCard('lib', 47, 100));
 
 // make a new div with a class of cards
 
-const div2 = document.createElement('div');
-div2.classList.add('cards');
-document.body.appendChild(div2);
+// const div2 = document.createElement('div');
+// div2.classList.add('cards');
+// document.body.appendChild(div2);
 
+const cards = document.createElement('div');
+cards.classList.add('cards');
 
 // make 4 player cards using generatePlayerCard
 
-const player1 = generatePlayerCard('lib', 47, 100)
-const player2 = generatePlayerCard('bob', 47, 100)
-const player3 = generatePlayerCard('kate', 47, 100)
-const player4 = generatePlayerCard('misty', 47, 100)
+let cardsHTML = generatePlayerCard('lib', 47, 100);
+cardsHTML += generatePlayerCard('misty', 47, 100);
+cardsHTML += generatePlayerCard('Moo', 47, 100);
+cardsHTML += generatePlayerCard('banans', 47, 100);
 
+console.log(cardsHTML);
+
+// const player1 = generatePlayerCard('lib', 47, 100);
+// const player2 = generatePlayerCard('bob', 47, 100);
+// const player3 = generatePlayerCard('kate', 47, 100);
+// const player4 = generatePlayerCard('misty', 47, 100);
 
 // append those cards to the div
 
-const cards = document.querySelector('.cards');
-console.log(cards);
-cards.textContent = player1;
+cards.innerHTML = cardsHTML;
+div.insertAdjacentElement('beforebegin', cards);
+
+// const cards = document.querySelector('.cards');
+// console.log(cards);
+// cards.textContent = player1;
 
 // put the div into the DOM just before the wrapper element
 // Bonus, put a delete Button on each card so when you click it, the whole card is removed
 
+
+
 // select all the buttons!
+const buttons = document.querySelectorAll('.delete');
 // make out delete function
+function deleteCard(event) {
+  const buttonThatGotClicked = event.currentTarget;
+  // buttonThatGotClicked.parentElement.remove();
+  buttonThatGotClicked.closest('.playerCard').remove();
+}
 // loop over them and attach a listener
+buttons.forEach((button) => button.addEventListener('click', deleteCard));
