@@ -9,7 +9,59 @@
 </head>
 
 <body>
+  <script>
+    // setTimeout(function() {
+    //   console.log('Hello');
+    // }, 1000);
+
+    function buzzer() {
+      console.log('Buzzer');
+    }
+
+    // console.log('Before timeout');
+    // setTimeout(buzzer, 1000);
+    // console.log('After timeout'); // This will run before the buzzer, async,
+
+    // setInterval(buzzer, 100); // This will run every second, forever, until you stop it, first run is after 100ms, will not run immediate
+
+    function setImmediateInterval(funcToRun, ms) {
+      // right away call the function
+      funcToRun();
+      // run a regular interval
+      return setInterval(funcToRun, ms);
+    }
+
+    // setImmediateInterval(buzzer, 1000);
+
+    function destroy() {
+      document.body.innerHTML = `destoryed`;
+    }
+
+    const bombTimer = setTimeout(destroy, 1000);
+
+    // window.addEventListener('click', function() {
+    //   console.log('clicked');
+    //   // how to stop timer from running
+    //   clearTimeout(bombTimer); // will stop the timer
+    // });
+
+    window.addEventListener('click', () => {
+      console.log('clicked');
+      // how to stop timer from running
+      // have to set on const
+      clearTimeout(bombTimer); // will stop the timer
+    });
+
+    const poopInterval = setInterval(() => {
+      console.log('💩');
+    }, 500);
+
+    setTimeout(() => {
+      clearInterval(poopInterval);
+    }, 3000);
+  </script>
 
 </body>
+
 
 </html>
