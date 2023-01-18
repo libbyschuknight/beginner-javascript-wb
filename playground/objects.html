@@ -10,7 +10,7 @@
 
 <body>
   <input type="text" name="first" value="wes">
-
+  <script src="https://unpkg.com/lodash"></script>
   <script>
     // const person = {
     //   // property: value
@@ -40,14 +40,19 @@
         shirts: 10,
         pants: 2,
       },
-      sayHello: function (greeting = 'Hey') {
-        return `${greeting} ${this.name}`;
-      },
+      sayHello(greeting = 'Hey') {
+    return `${greeting} ${this.name}`;
+  },
       // method shorthand
       sayHello1(greeting = 'Hey') {
         return `${greeting} ${this.name}`;
       },
     };
+
+    // Methods
+    // method is just a function that lives inside of an object
+    // what is "this"? "this" is the object that the method is inside of
+
     // const wesFroze = Object.freeze(wes); // make immutable
 
     wes.job = 'Web Developer';
@@ -63,11 +68,104 @@
     console.log(name);
 
     // delete value from object
-    delete wes.job;
+    // delete wes.job;
+    // console.log(delete wes.job);
+    // wes.age = undefined;
+    // wes.age = null;
 
-    // Methods
-    // method is just a function that lives inside of an object
-    // what is this? this is the object that the method is inside of
+    // Mod 8: 43 Object Reference vs Values
+
+    let name1 = 'wes';
+    let name2 = 'wes';
+
+    console.log(name1 === name2);
+    name1 = 'scott';
+    console.log(name1 === name2);
+    // update name1 to be what is name2
+    name1 = name2;
+    console.log(name1 === name2);
+    name2 = name1;
+    name2 = 'westopher';
+
+    const person1 = {
+      first: 'wes',
+      last: 'bos',
+      clothing: {
+        shirts: 10,
+        pants: 2,
+      },
+    };
+
+    const person2 = {
+      first: 'wes',
+      last: 'bos',
+    };
+
+    // 2 separate objects, they are not the same thing
+    console.log(person1 === person2); // false
+
+    // const person3 = person1; // this is NOT a copy, it references or points to the original object / variable, person3 was never it, same for arrays, maps and sets
+    // not taking a copy, creating a variable that points to the original
+
+    // console.log(person1 === person3); // true
+    // person3.first = 'larry';
+    // console.log(person1);
+    // console.log(person3);
+
+    // "copy" an object
+    // spread operator ...
+    // const person3 = { ...person1 };
+    // shallow copies! only one level deep
+    // const person3 = Object.assign({}, person1); // old way
+    // person3 and person1 clothing.shirts are now 100 - when using shallow copy
+
+    // lodash
+    // https://lodash.com/docs/4.17.15#cloneDeep
+    const person3 = _.cloneDeep(person1);
+    person3.first = 'larry';
+    person3.clothing.shirts = 100;
+    // console.log(person1);
+    // console.log(person3);
+
+    // merging to objects together
+    // spread opertor
+
+    const meatInventory = {
+      bacon: 2,
+      sausage: 3,
+      oyster: 10,
+    };
+
+    const veggieInventory = {
+      lettuce: 5,
+      tomatoes: 3,
+      oyster: 15, // wins out in spread
+    };
+
+    const inventory = {
+      ...meatInventory,
+      ...veggieInventory,
+      bananas: 100,
+    };
+
+    // console.log(inventory);
+
+    function doStuff(data) {
+      data = 'something else';
+      console.log(data);
+    }
+
+    doStuff(name1);
+
+    // pass an object into a function, the object is passed by reference, not by value
+    // if you change the object inside the function, it will change the original object
+    // pass it in as a copy, not a reference
+    function doStuff2(data) {
+      data.tomatoes = 10000000000;
+      console.log(data);
+    }
+
+    doStuff2(inventory);
   </script>
 </body>
 
