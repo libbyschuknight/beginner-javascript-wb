@@ -9,8 +9,59 @@
 </head>
 
 <body>
+  <ul class="prizes"></ul>
   <script>
+    const person1 = {
+      name: 'wes',
+      age: 200,
+    };
 
+
+    const myMap = new Map();
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map
+    // order is guaranteed
+    // Set - key-value pairs
+    // keys can be any type
+    myMap.set('name', 'John');
+    myMap.set('age', 30);
+    myMap.set(100, 'this is a number');
+    myMap.set(person1, 'Really Cool');
+    console.log(myMap);
+
+    // look up in dictionary, use key to get value
+    console.log(myMap.get(person1));
+
+    const score = 200;
+    const prizes = new Map();
+    prizes.set(100, 'Bear');
+    prizes.set(200, 'Duck');
+    prizes.set(300, 'Car');
+    console.log(`you win a ${prizes.get(score)}`);
+
+    // select that ul
+    const ul = document.querySelector('.prizes');
+    // for (const [points, prize] of prizes) {
+    //   console.log(points, prize);
+    // }
+
+    for (const [points, prize] of prizes) {
+      const li = `<li>${points} - ${prize}</li>`;
+      ul.insertAdjacentHTML('beforeend', li);
+    }
+
+    myMap.delete('age');
+    console.log(myMap);
+
+    const person2 = {
+      name: 'wes',
+      age: 200,
+    };
+    JSON.stringify(person2);
+    console.log(JSON.stringify(person2));
+
+    const myMapJson = JSON.stringify(myMap);
+    // currently JSON does not handle maps
+    console.log(myMapJson);
   </script>
 </body>
 
