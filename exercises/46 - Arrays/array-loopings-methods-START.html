@@ -12,7 +12,19 @@
 
 <body>
   <script>
-    const toppings = ['Mushrooms ', 'Tomatoes', 'Eggs', 'Chili', 'Lettuce', 'Avocado', 'Chiles', 'Bacon', 'Pickles', 'Onions', 'Cheese'];
+    const toppings = [
+  'Mushrooms ',
+  'Tomatoes',
+  'Eggs',
+  'Chili',
+  'Lettuce',
+  'Avocado',
+  'Chiles',
+  'Bacon',
+  'Pickles',
+  'Onions',
+  'Cheese',
+];
 
     const students = [
       {
@@ -67,32 +79,31 @@
         birthday: 'April 22, 1993',
         names: {
           first: 'Keith',
-          last: 'Buckley'
-        }
+          last: 'Buckley',
+        },
       },
       {
         birthday: 'January 3, 1975',
         names: {
           first: 'Larry',
-          last: 'Heep'
-        }
+          last: 'Heep',
+        },
       },
       {
         birthday: 'February 12, 1944',
         names: {
           first: 'Linda',
-          last: 'Bermeer'
-        }
-      }
+          last: 'Bermeer',
+        },
+      },
     ];
-
 
     const buns = ['egg', 'wonder', 'brioche'];
 
     const meats = {
       beyond: 10,
       beef: 5,
-      pork: 7
+      pork: 7,
     };
 
     const prices = {
@@ -112,6 +123,108 @@
       { comment: 'I DONT LIKE BURGERS', rating: 1 },
     ];
 
+    /*
+      Static Methods
+    */
+    //  utility methods
+
+    // Array.of();
+    // creating array from its arguments
+    Array.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+    // Make a function that creates a range from x to y with Array.from();
+    Array.from({ length: 10 }, () => Math.floor(Math.random() * 100));
+
+    function createRange(start, end) {
+      return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+    }
+
+    // const range = (start, end) => Array.from({ length: end - start + 1 }, (_, i) => start + i);
+    // const range = Array.from({ length: 10 }, (_, i) => i + 1);
+
+    const myRange = createRange(1, 10);
+
+    // Check if the last array you created is really an array with Array.isArray();
+    console.log(Array.isArray(myRange));
+
+    // Take the meats object and make three arrays with Object.entries(), Object.keys, Object.values()
+
+    console.log(Object.entries(meats));
+    console.log(Object.keys(meats));
+    console.log(Object.values(meats));
+
+    Object.values(meats).forEach((value) => console.log(value));
+
+    // destructuring in function call
+    Object.entries(meats).forEach(([meat, qty]) => {
+      // const key = entry[0];
+      // const value = entry[1];
+      // const [key, value] = entry; // destructuring
+      console.log(meat, qty);
+    });
+
+    // Instance Methods
+
+    // Display all bun types with " or " - use join()
+    console.log(buns.join(' or '));
+
+    // We have a string "hot dogs,hamburgers,sausages,corn" - use split() to turn it into an array
+    const foodString = "hot dogs,hamburgers,sausages,corn";
+    console.log(foodString.split(','));
+
+    // take the last item off toppings with pop()
+    const lastItem = toppings.pop();
+    console.log(lastItem);
+
+    // add it back with push()
+    toppings.push(lastItem);
+    console.log(toppings);
+
+    // take the first item off toppings with shift()
+    const firstItem = toppings.shift();
+    console.log(firstItem);
+
+    // add it back in with unshift()
+    toppings.unshift(firstItem);
+
+    // Do the last four,but immutable (with spreads and new variables)
+    let newToppings = toppings.slice(0, toppings.length - 1);
+    newToppings = [...newToppings, toppings[toppings.length - 1]];
+    console.log(newToppings);
+
+    // Make a copy of the toppings array with slice()
+    const toppingsCopy = toppings.slice(0);
+    toppings[0] = 'Mushy Boi';
+    console.log(toppings);
+    console.log(toppingsCopy);
+
+    // Make a copy of the toppings array with a spread
+    const toppingsCopy2 = [...toppings];
+
+    // take out items 3 to 5 of your new toppings array with splice()
+    toppingsCopy.splice(3, 5);
+    console.log(toppingsCopy);
+
+    // find the index of Avocado with indexOf() / lastIndexOf()
+    const avoIndex = toppings.indexOf('Avocado');
+    console.log(avoIndex);
+
+    // Check if hot sauce is in the toppings with includes()
+    const isInToppings = toppings.includes('Hot Sauce');
+    console.log(isInToppings);
+
+    // add it if it's not
+    if (!isInToppings) {
+      toppings.push('Hot Sauce');
+    }
+    console.log(toppings);
+
+    // flip those toppings around with reverse()
+    // toppings.reverse();
+    const toppingsReversed = [...toppings].reverse();
+    console.log(toppingsReversed);
+
+
     const faces = ['😃', '🤠', '🤡', '🤑', '😵', '🌞', '🐶', '😺'];
 
     const inventory = [
@@ -124,11 +237,9 @@
       { type: 'pants', price: 123 },
     ];
 
-
     /*
       Looping Methods
     */
-
   </script>
 </body>
 
