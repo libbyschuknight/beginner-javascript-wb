@@ -152,10 +152,11 @@
 
     toppings.forEach(logTopping);
 
+    console.clear();
     // Map, Filter, Reduce
     // the BIG 3
 
-    console.clear();
+    // map -  is like a machine in a factory. It takes in data, performs an operation and then spits it out on the other side.
 
     function addArms(face) {
       return `👋 ${face} 👋`;
@@ -176,6 +177,7 @@
     const fullNames = ['wes', 'kait', 'poppy']
       .map(capitalize)
       .map(bosify);
+
     console.log(fullNames);
 
 
@@ -196,14 +198,23 @@
 
     //     faces.map(face => attachBody(face, '🍟')).forEach(body => console.log(body))
 
+    // tip console.dir(new Date())
+    // HOT TIP 🔥: Use console.dir(birthday) to see all the methods that exist on a Date object.
+
+
+// 14:55
+
     const cleanPeople = people.map(function (person) {
       // timestamp
+      // get their birthday
       const birthday = new Date(person.birthday).getTime();
+
       // now timestamp
       const now = Date.now();
-      const age = Math.floor((now - birthday) / 31536000000);
-      // get their birthday
+
       // figure out how old they are
+      const age = Math.floor((now - birthday) / 31536000000);
+
       // return their full name and bday in an object
       return {
         age,
