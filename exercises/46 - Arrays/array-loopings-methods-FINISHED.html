@@ -202,15 +202,13 @@
     // HOT TIP 🔥: Use console.dir(birthday) to see all the methods that exist on a Date object.
 
 
-// 14:55
-
     const cleanPeople = people.map(function (person) {
       // timestamp
       // get their birthday
       const birthday = new Date(person.birthday).getTime();
 
       // now timestamp
-      const now = Date.now();
+      const now = Date.now(); // static method, only exists on the class (mumma object)
 
       // figure out how old they are
       const age = Math.floor((now - birthday) / 31536000000);
