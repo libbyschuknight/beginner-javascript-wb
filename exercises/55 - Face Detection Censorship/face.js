@@ -12,7 +12,9 @@ const ctx = canvas.getContext('2d');
 const faceCanvas = document.querySelector('.face');
 const faceCtx = faceCanvas.getContext('2d');
 
-const faceDetector = new window.FaceDetector();
+// const faceDetector = new window.FaceDetector();
+const faceDetector = new FaceDetector({ fastMode: true });
+
 
 // console.log(video)
 // console.log(canvas)
@@ -42,13 +44,18 @@ async function populateVideo() {
 async function detect() {
   const faces = await faceDetector.detect(video);
 
-  console.log(faces);
+  // console.log(faces);
   // ask the browser when the next animation frame is, and tell it to run detect for us
-  // faces.forEach(drawFace);
+  faces.forEach(drawFace);
   // faces.forEach(censor);
   requestAnimationFrame(detect);
 }
 
+function drawFace(face) {
+  const { width, height, top, left } = face.boundingBox;
+  console.log({width, height, top, left}); // width: width, height: height, top: top, left: left - is what going {width, height, top, left} is doing
+}
+
 populateVideo().then(detect);
 
-// 23mins 24 secs - detect not working through, have a look at the slack channel
+// 30mins 46secs
