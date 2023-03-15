@@ -1,4 +1,4 @@
-console.log('face 2 works oh yes it does');
+console.log('face 3 works oh yes it does');
 // The face detection does not work on all browsers and operating systems.
 // If you are getting a `Face detection service unavailable` error or similar,
 // it's possible that it won't work for you at the moment.
@@ -16,6 +16,25 @@ const faceCtx = faceCanvas.getContext('2d');
 const faceDetector = new FaceDetector({ fastMode: true });
 
 const SIZE = 10;
+const SCALE = 1.35;
+
+const optionsInputs = document.querySelectorAll('.controls input[type="range"]');
+
+
+
+
+const options = {
+  SIZE: 10,
+  SCALE: 1.35,
+};
+
+function handleOption(event) {
+  // console.log(event.currentTarget.value);
+  const { value, name } = event.currentTarget;
+  options[name] = parseFloat(value);
+}
+
+optionsInputs.forEach(input => input.addEventListener('input', handleOption));
 
 
 // console.log(video)
@@ -81,30 +100,33 @@ function censor({ boundingBox: face }) {
     // 4 draw arguments - drawing in to face canvas
     face.x, // where should we start drawing the x and y?
     face.y,
-    SIZE,
-    SIZE
+    options.SIZE,
+    options.SIZE
   );
 
   // draw small face back on, but scale up
+  const width = face.width * options.SCALE;
+  const height = face.height * options.SCALE;
+
   faceCtx.drawImage(
     faceCanvas, // source
     face.x,
     face.y,
-    SIZE,
-    SIZE,
+    options.SIZE,
+    options.SIZE,
     // drawing args
     // face.x * 1.35, // where should we start drawing the x and y?
     // face.y * 1.35,
     // face.width * 1.35,
     // face.height * 1.35
-    face.x, // where do we start the source pull from?
-    face.y,
-    face.width,
-    face.height,
+    face.x - (width - face.width), // where do we start the source pull from?
+    face.y - (height - face.height),
+    width,
+    height,
   )
 
 }
 
 populateVideo().then(detect);
 
-// 44 mins 38 secs
+// Finished at 48 mins
