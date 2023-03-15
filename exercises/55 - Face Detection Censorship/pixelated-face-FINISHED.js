@@ -9,7 +9,8 @@ const canvas = document.querySelector('.video');
 const ctx = canvas.getContext('2d');
 const faceCanvas = document.querySelector('.face');
 const faceCtx = faceCanvas.getContext('2d');
-const faceDetector = new window.FaceDetector();
+// const faceDetector = new window.FaceDetector();
+const faceDetector = new FaceDetector({ fastMode: true });
 const optionsInputs = document.querySelectorAll(
   '.controls input[type="range"]'
 );
@@ -42,6 +43,7 @@ async function populateVideo() {
 
 async function detect() {
   const faces = await faceDetector.detect(video);
+
   // ask the browser when the next animation frame is, and tell it to run detect for us
   faces.forEach(drawFace);
   faces.forEach(censor);

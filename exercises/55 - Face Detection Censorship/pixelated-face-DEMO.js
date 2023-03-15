@@ -2,7 +2,10 @@
 // If you are getting a `Face detection service unavailable` error or similar,
 // it's possible that it won't work for you at the moment.
 
-const faceDetector = new window.FaceDetector();
+console.log("demo");
+
+// const faceDetector = new window.FaceDetector();
+const faceDetector = new FaceDetector({ fastMode: true });
 const video = document.querySelector('video.webcam');
 const canvas = document.querySelector('canvas.video');
 const ctx = canvas.getContext('2d');
