@@ -9,7 +9,69 @@
 </head>
 
 <body>
+  <button class="one">Button 1</button>
+  <button class="two">Button 2</button>
+  <script>
+    // const myDate = new Date('August 11, 2025');
+    // console.dir(myDate);
+    // console.log(myDate.getFullYear());
 
+    // const names = new Array('wes', 'kait');
+    // const names = ['wes', 'kait']; // literal syntax
+
+    // const wes = new Object({ name: 'wes' });
+    // const wes = new Object({ name: 'wes' });// literal syntax
+
+    // const span = document.createElement('span');
+    // console.log(span);
+
+    function Pizza(toppings = [], customer) {
+      console.log('Making a pizza');
+      // save the toppings that were passed in, to this instance of pizza
+      this.toppings = toppings;
+      this.customer = customer;
+      this.id = Math.floor(Math.random() * 16777215).toString(16);
+      // this is used for storing data and functionality on each of the instances.
+    }
+
+    const pepperoniPizza = new Pizza(['pepperoni'], 'Wes');
+    const canadianPizza = new Pizza(['pepperoni', 'banana peppers', 'mozzarella'], 'Kait');
+    console.log(pepperoniPizza);
+    console.log(canadianPizza);
+    // console.log(pepperoniPizza); // tells what thing made it
+    // console.log(pepperoniPizza.constructor); // tells what thing made it
+    // console.log(pepperoniPizza instanceof Pizza); // true
+
+
+    // this keyword
+    // Up to now Wes has told us that the this keyword is what is left of the dot when you are calling a method.
+    // The this keyword in JavaScript refers to the instance of an object that a function is bound to.
+
+    const button1 = document.querySelector('.one'); // instanceof html button in browser
+    const button2 = document.querySelector('.two');
+
+    // function tellMeAboutTheButton() {
+    //   console.log(this); // e.g. <button class="two">Button 2</button> - what was to the left of the dot when the function was called
+    //   console.log(this.textContent);
+    //   setTimeout(() => {
+    //     // have to use arrow function to access this keyword as the button, otherwise this is the window object
+    //     console.log(this);
+    //     this.textContent = 'You Clicked Me!';
+    //   }, 1000);
+    // }
+    // // the this keyword is always scoped to a function
+
+    // // const tellMeAboutTheButton = () => {
+    // //   console.log(this); // Window {parent: Window, opener: null, top: Window, length: 0, frames: Window, …}
+    // // }
+    // // // the this is the window object because the arrow function is not bound to the button
+
+    // button1.addEventListener('click', tellMeAboutTheButton); // function is bound to the button
+    // button2.addEventListener('click', tellMeAboutTheButton);
+
+
+
+  </script>
 </body>
 
 </html>
