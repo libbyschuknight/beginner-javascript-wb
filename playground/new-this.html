@@ -25,14 +25,22 @@
     // const span = document.createElement('span');
     // console.log(span);
 
-    function Pizza(toppings = [], customer) {
+    function Pizza(customer, toppings = []) {
       console.log('Making a pizza');
       // save the toppings that were passed in, to this instance of pizza
       this.toppings = toppings;
       this.customer = customer;
       this.id = Math.floor(Math.random() * 16777215).toString(16);
       // this is used for storing data and functionality on each of the instances.
+      this.slices = 10;
+      this.eat = function () {
+        console.log('Eating a pizza');
+        this.slices -= 1;
+        console.log(`Now there are ${this.slices} slices left`);
+      };
     }
+
+    // mod 11 - 63, 4m54s
 
     const pepperoniPizza = new Pizza(['pepperoni'], 'Wes');
     const canadianPizza = new Pizza(['pepperoni', 'banana peppers', 'mozzarella'], 'Kait');
