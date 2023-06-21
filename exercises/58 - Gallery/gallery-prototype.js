@@ -13,6 +13,12 @@ function Gallery(gallery) {
   this.prevButton = this.modal.querySelector('.prev');
   this.nextButton = this.modal.querySelector('.next');
 
+  // Bind our methods to the instance when we need them
+  this.showNextImage = this.showNextImage.bind(this);
+  this.showPrevImage = this.showPrevImage.bind(this);
+  this.handleKeyUp = this.handleKeyUp.bind(this);
+  this.handleClickOutside = this.handleClickOutside.bind(this);
+
   // Event listeners
   this.images.forEach((image) =>
     image.addEventListener('click', (event) =>
@@ -87,13 +93,13 @@ Gallery.prototype.showImage = function (element) {
 
 Gallery.prototype.showNextImage = function () {
   this.showImage(
-    this.currentImage.nextElementSibling || Gallery.firstElementChild
+    this.currentImage.nextElementSibling || this.gallery.firstElementChild
   );
 };
 
 Gallery.prototype.showPrevImage = function () {
   this.showImage(
-    this.currentImage.previousElementSibling || Gallery.lastElementChild
+    this.currentImage.previousElementSibling || this.gallery.lastElementChild
   );
 };
 

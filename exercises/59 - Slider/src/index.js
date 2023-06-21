@@ -1,3 +1,4 @@
+// create own prototype file
 function Slider(slider) {
   if (!(slider instanceof Element)) {
     throw new Error('No Slider passed in');
