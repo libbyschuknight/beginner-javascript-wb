@@ -25,6 +25,17 @@
     // const span = document.createElement('span');
     // console.log(span);
 
+    // String.prototype.yell = function () {
+    //   return `OMG ${this.toUpperCase()}!!!!`;
+    // };
+
+    // String.prototype.sarcastic = function () {
+    //   const sarcastic = this.split('').map((char, index) => {
+    //     return index % 2 ? char.toUpperCase() : char.toLowerCase();
+    //   });
+    //   return sarcastic.join('');
+    // };
+
     function Pizza(customer, toppings = []) {
       console.log('Making a pizza');
       // save the toppings that were passed in, to this instance of pizza
@@ -33,27 +44,42 @@
       this.id = Math.floor(Math.random() * 16777215).toString(16);
       // this is used for storing data and functionality on each of the instances.
       this.slices = 10;
-      this.eat = function () {
-        console.log('Eating a pizza');
-        this.slices -= 1;
-        console.log(`Now there are ${this.slices} slices left`);
-      };
+      // this.eat = function () {
+      //   console.log('Eating a pizza');
+      //   this.slices -= 1;
+      //   console.log(`Now there are ${this.slices} slices left`);
+      // };
     }
 
-    // mod 11 - 63, 4m54s
+    Pizza.prototype.eat = function () {
+      console.log('Eating a pizza');
+      this.slices -= 1;
+      console.log(`Now there are ${this.slices} slices left`);
+    };
 
-    const pepperoniPizza = new Pizza(['pepperoni'], 'Wes');
-    const canadianPizza = new Pizza(['pepperoni', 'banana peppers', 'mozzarella'], 'Kait');
+    Pizza.prototype.describe = function () {
+      console.log(
+        `This pizza belongs to ${this.customer} and has ${this.toppings.join(', ')}`
+      );
+    };
+
+    const pepperoniPizza = new Pizza('Wes', ['pepperoni']);
+    const canadianPizza = new Pizza('Kait', [
+      'pepperoni',
+      'banana peppers',
+      'mozzarella',
+    ]);
     console.log(pepperoniPizza);
     console.log(canadianPizza);
     // console.log(pepperoniPizza); // tells what thing made it
     // console.log(pepperoniPizza.constructor); // tells what thing made it
     // console.log(pepperoniPizza instanceof Pizza); // true
 
-
     // this keyword
     // Up to now Wes has told us that the this keyword is what is left of the dot when you are calling a method.
     // The this keyword in JavaScript refers to the instance of an object that a function is bound to.
+
+
 
     const button1 = document.querySelector('.one'); // instanceof html button in browser
     const button2 = document.querySelector('.two');
@@ -76,9 +102,6 @@
 
     // button1.addEventListener('click', tellMeAboutTheButton); // function is bound to the button
     // button2.addEventListener('click', tellMeAboutTheButton);
-
-
-
   </script>
 </body>
 
