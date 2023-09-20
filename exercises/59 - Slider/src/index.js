@@ -58,7 +58,6 @@ function Slider(slider) {
     applyClasses();
   }
 
-
   // when this slider is created, run the start slider function
   startSlider();
   applyClasses();
@@ -67,7 +66,6 @@ function Slider(slider) {
   prevButton.addEventListener('click', () => move('back'));
   nextButton.addEventListener('click', move);
 }
-
 
 const mySlider = Slider(document.querySelector('.slider'));
 const dogSlider = Slider(document.querySelector('.dog-slider'));
