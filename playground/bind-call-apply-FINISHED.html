@@ -28,7 +28,7 @@
 
     const sayHi = person.sayHi.bind({ name: 'Harry' });
 
-    // QS Example
+    // Query Selector Example
     // by calling bind against querySelector, we say when the $ function is run, use `document` as the `this` value.
     const $ = document.querySelector.bind(document);
     const lookFor = document.querySelectorAll.bind(document);
@@ -52,8 +52,21 @@
 
     const total = bill.calculate(0.13);
     const calc = bill.calculate.bind({ total: 500 }, 0.06);
-
     console.log(calc());
+
+    // .call & .apply
+    // They work the exact same as bind does with one difference: they will call the function for you.
+
+    // .bind calls a function, which then needs to be called by itself.
+
+    // call does the same thing as bind but it will also run the function for you so you don't have to call it.
+
+    // If you need to bind a function and call it later, use bind.
+
+    // If you need to bind a function that you want to call immediately you can use call.
+
+    // apply is the same as call but it takes an array of arguments instead of a list of arguments.
+
     const total2 = bill.calculate.call({ total: 500 }, 0.06);
     console.log(total2);
 
@@ -62,6 +75,7 @@
 
     const myMeal = bill.describe.call(bill, 'pizza', 'beer', 0.13);
     console.log(myMeal);
+
     const myMeal2 = bill.describe.apply(bill, ['pizza', 'beer', 0.13]);
     console.log(myMeal2);
 
