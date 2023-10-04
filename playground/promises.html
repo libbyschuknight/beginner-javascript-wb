@@ -10,7 +10,55 @@
 
 <body>
   <script>
+    // function makePizza(toppings) {
+    //   const pizzaPromise = new Promise((resolve, reject) => {
+    //     // wait 1 second for pizz to cook:
+    //     setTimeout(() => {
+    //       // when you are ready, you can resolve this promise
+    //       resolve(`Here is your pizza 🍕 with the toppings ${toppings.join(' ')}`);
+    //     }, 1000);
+    //     // if something went wrong, we can reject this promise
+    //   });
+    //   return pizzaPromise;
+    // }
+    function makePizza(toppings) {
+      return new Promise((resolve, reject) => {
+        // wait 1 second for pizz to cook:
+        setTimeout(() => {
+          // when you are ready, you can resolve this promise
+          resolve(`Here is your pizza 🍕 with the toppings ${toppings.join(' ')}`);
+        }, 1000);
+        // if something went wrong, we can reject this promise
+      });
+    }
 
+    console.log('first');
+    makePizza(['pepperoni'])
+      .then((pizza) => {
+        console.log(pizza);
+        return makePizza(['ham', 'cheese']);
+      })
+      .then((pizza) => {
+        console.log(pizza);
+        return makePizza(['hot peppers', 'onion', 'feta']);
+      })
+      .then((pizza) => {
+        console.log(pizza);
+      });
+    console.log('after');
+
+    // const pepPromise = makePizza(['pepperoni']);
+    // console.log(pepPromise);
+
+    // pepPromise.then((pizza) => {
+    //   console.log(pizza);
+    // });
+
+    // const caPromise = makePizza(['pepperoni', 'onions']);
+    // console.log(caPromise);
+    // caPromise.then((pizza) => {
+    //   console.log(pizza);
+    // });
   </script>
 </body>
 
