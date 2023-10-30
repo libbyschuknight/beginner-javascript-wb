@@ -1,5 +1,5 @@
 function wait(ms = 0) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 async function destroyPopup(popup) {
@@ -13,7 +13,7 @@ async function destroyPopup(popup) {
 }
 
 function ask(options) {
-  return new Promise(async function(resolve) {
+  return new Promise(async (resolve) => {
     // First we need to create a popup with all the fields in it
     const popup = document.createElement('form');
     popup.classList.add('popup');
@@ -36,7 +36,7 @@ function ask(options) {
       // TODO: listen for a click on that cancel button
       skipButton.addEventListener(
         'click',
-        function() {
+        () => {
           resolve(null);
           destroyPopup(popup);
         },
@@ -46,7 +46,7 @@ function ask(options) {
     // listen for the submit event on the inputs
     popup.addEventListener(
       'submit',
-      function(e) {
+      (e) => {
         e.preventDefault();
         console.log('SUBMITTED');
         resolve(e.target.input.value);
@@ -79,7 +79,7 @@ async function askQuestion(e) {
 }
 
 const buttons = document.querySelectorAll('[data-question]');
-buttons.forEach(button => button.addEventListener('click', askQuestion));
+buttons.forEach((button) => button.addEventListener('click', askQuestion));
 
 const questions = [
   { title: 'What is your name?' },
