@@ -8,9 +8,45 @@
   <link rel="stylesheet" href="../base.css">
 </head>
 
+
+<!--
+AJAX
+  Async
+  Javascript
+  and
+  Xml
+
+  You will often referred to what we are doing in this video as AJAX, which stands for Asynchronous JavaScript and XML.
+
+  We know what asynchronous is and JavaScript, but you may not know what XML is.
+
+  XML is another way that you can receive data and it looks a lot like HTML but is not HTML.
+
+  XML was used in the past but has generally been replaced with JSON as the preferred way to send data via APIs, but you might still encounter it. Wes has only had to work with XML once during his 12 year career.
+
+  When people say "AJAX", they mean fetching data from an API and displaying it on the page
+
+-->
+
 <body>
   <script>
+  function handleError(err) {
+    console.log('OH NO!');
+    console.log(err);
+  }
 
+  const endpoint = 'https://api.github.com/users/libbyschuknight';
+
+  const libPromise = fetch(endpoint);
+  libPromise
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      console.log(data.name);
+      console.log(data.location);
+      console.log(data.blog);
+    })
+    .catch(handleError);
   </script>
 </body>
 
