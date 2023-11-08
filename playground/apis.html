@@ -29,24 +29,54 @@ AJAX
 -->
 
 <body>
+  <p class="user"></p>
+
+
   <script>
+  // function handleError(err) {
+  //   console.log('OH NO!');
+  //   console.log(err);
+  // }
+
+  // const endpoint = 'https://api.github.com/users/libbyschuknight';
+  // const userEl = document.querySelector('.user');
+
+  // userEl.textContent = 'Loading...';
+
+  // const libPromise = fetch(endpoint);
+  // libPromise
+  //   .then((response) => response.json())
+  //   .then((data) => {
+  //     console.log(data);
+  //     console.log(data.name);
+  //     console.log(data.location);
+  //     console.log(data.blog);
+  //     userEl.textContent = data.name;
+  //   })
+  //   .catch(handleError);
+
+  const baseEndpoint = 'https://api.github.com';
+  const usersEndpoint = `${baseEndpoint}/users`;
+  const userEl = document.querySelector('.user');
+
+  async function getUser(username) {
+    userEl.textContent = 'Loading...';
+    const response = await fetch(`${usersEndpoint}/${username}`);
+    const data = await response.json();
+    console.log(data);
+    console.log(data.name);
+    console.log(data.location);
+    console.log(data.blog);
+    userEl.textContent = data.name;
+  }
+
   function handleError(err) {
     console.log('OH NO!');
     console.log(err);
+    userEl.textContent = `Something went wrong: ${err}`;
   }
 
-  const endpoint = 'https://api.github.com/users/libbyschuknight';
-
-  const libPromise = fetch(endpoint);
-  libPromise
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      console.log(data.name);
-      console.log(data.location);
-      console.log(data.blog);
-    })
-    .catch(handleError);
+  getUser('libbyschuknight').catch(handleError);
   </script>
 </body>
 
