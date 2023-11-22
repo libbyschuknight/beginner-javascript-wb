@@ -1,3 +1,9 @@
+const fromSelect = document.querySelector('[name="from_currency"]');
+const fromInput = document.querySelector('[name="from_amount"]');
+const toSelect = document.querySelector('[name="to_currency"]');
+const endpoint = 'https://api.apilayer.com/exchangerates_data/latest';
+const ratesByBase = {};
+
 const currencies = {
   USD: 'United States Dollar',
   AUD: 'Australian Dollar',
@@ -32,3 +38,70 @@ const currencies = {
   ZAR: 'South African Rand',
   EUR: 'Euro',
 };
+
+function generateOptions(options) {
+  // return Object.entries(options).map((arr) => {
+  //   console.log(arr);
+  // });
+  return Object.entries(options)
+    .map(
+      ([currencyCode, currencyName]) =>
+        `<option value="${currencyCode}">${currencyCode} - ${currencyName}</option>`
+    )
+    .join('');
+}
+
+async function fetchRates(base = 'USD') {
+  // // look at api docs and got this work with this
+  // // https://apilayer.com/marketplace/exchangerates_data-api#documentation-tab
+  // const requestOptions = {
+  //   method: 'GET',
+  //   redirect: 'follow',
+  //   headers: {
+  //     apikey: '04W8Hz8btlDOYnlOqDLhdDHuivrTGqc7',
+  //   },
+  // };
+
+  // console.log(requestOptions);
+
+  // const res = await fetch(`${endpoint}?base=${base}`, requestOptions)
+  //   .then((response) => response.text())
+  //   .then((result) => console.log('result', result))
+  //   .catch((error) => console.log('error', error));
+
+  // // end
+
+  const res = await fetch(`${endpoint}?base=${base}`, {
+    headers: {
+      apikey: '04W8Hz8btlDOYnlOqDLhdDHuivrTGqc7',
+    },
+  });
+
+  const rates = await res.json();
+  return rates;
+}
+
+async function convert(amount, from, to) {
+  // first check if we even have the rates to convert from that currency
+  if (!ratesByBase[from]) {
+    console.log(
+      `oh no we dont have ${from} to convert to ${to}. So lets go get it!`
+    );
+    const rates = await fetchRates(from);
+    // store them for next time
+    ratesByBase[from] = rates;
+  }
+  // convert that amount that they passed it
+  const rate = ratesByBase[from].rates[to];
+  const convertedAmount = rate * amount;
+  // console.log(`${amount} ${from} is ${convertedAmount} in ${to}`);
+  return convertedAmount;
+}
+
+const optionsHTML = generateOptions(currencies); // run once, store in variable
+// console.log(optionsHTML);
+// populate the options elements
+fromSelect.innerHTML = optionsHTML;
+toSelect.innerHTML = optionsHTML;
+
+// 19min
