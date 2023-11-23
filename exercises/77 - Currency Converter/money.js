@@ -1,6 +1,8 @@
 const fromSelect = document.querySelector('[name="from_currency"]');
 const fromInput = document.querySelector('[name="from_amount"]');
 const toSelect = document.querySelector('[name="to_currency"]');
+const toEl = document.querySelector('.to_amount');
+const form = document.querySelector('.app form');
 const endpoint = 'https://api.apilayer.com/exchangerates_data/latest';
 const ratesByBase = {};
 
@@ -104,4 +106,22 @@ const optionsHTML = generateOptions(currencies); // run once, store in variable
 fromSelect.innerHTML = optionsHTML;
 toSelect.innerHTML = optionsHTML;
 
-// 19min
+function formatCurrency(amount, currency) {
+  // console.log(amount, currency);
+  return Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency,
+  }).format(amount);
+}
+
+async function handleInput(e) {
+  const rawAmount = await convert(
+    fromInput.value,
+    fromSelect.value,
+    toSelect.value
+  );
+
+  toEl.textContent = formatCurrency(rawAmount, toSelect.value);
+}
+
+form.addEventListener('input', handleInput);
