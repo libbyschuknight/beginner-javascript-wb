@@ -1,15 +1,19 @@
-console.log('working??');
+// entry point for all JS
+// import first, { returnHi as sayHi, last, middle } from './utils-FINISHED.js';
+// import { returnHi } from './utils-FINISHED.js';
 
-// import first, { returnHi as sayHi, last, middle } from './utils.js';
-// import * as everything from './wes.js';
+// import * as everything from './wes-FINISHED.js';
+// import person from './wes-FINISHED.js';
+// console.log(person);
 
-// import { handleButtonClick } from './handlers.js';
+import { handleButtonClick } from './handlers-FINISHED.js';
 
-// const button = document.querySelector('button');
+const button = document.querySelector('button');
 
-// button.addEventListener('click', handleButtonClick);
+button.addEventListener('click', handleButtonClick);
 
 // console.log(sayHi, last, middle, first);
 // console.log(everything);
 
-// 10min 45 sec
+// // console.log(returnHi('libby'));
+// console.log(sayHi('libby')); // returnHi has been renamed to sayHi in the import statement
