@@ -1,3 +1,6 @@
+// if parecel doesn't work but it should - was in video, but video old
+// "browserslist": ["last 1 chrome version"]
+
 import { jokeButton } from './lib/elements.js';
 import { handleClick } from './lib/handlers.js';
 
@@ -9,5 +12,3 @@ import { handleClick } from './lib/handlers.js';
 // });
 
 jokeButton.addEventListener('click', handleClick);
-
-// 4 mins
