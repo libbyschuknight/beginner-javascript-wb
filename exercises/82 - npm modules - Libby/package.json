@@ -1,0 +1,22 @@
+{
+  "name": "npmmodules",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5"
+  },
+  "dependencies": {
+    "@ngneat/falso": "^7.1.1",
+    "await-to-js": "^3.0.0",
+    "axios": "^1.6.2",
+    "date-fns": "^2.30.0",
+    "lodash": "^4.17.21",
+    "waait": "^1.0.5"
+  }
+}
